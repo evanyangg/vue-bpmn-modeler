@@ -1,13 +1,13 @@
 {
-  "name": "wangdou-workflow-client",
-  "version": "0.1.4",
+  "name": "bpmn-vue",
+  "version": "0.0.1",
   "private": false,
-  "main": "lib/flow-design.umd.min.js",
+  "main": "lib/bpmn-vue.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name flow-design --dest lib src/views/index.js"
+    "lib": "vue-cli-service build --target lib --name bpmn-vue --dest lib src/views/index.js"
   },
   "dependencies": {
     "bpmn-js": "^5.0.4",
