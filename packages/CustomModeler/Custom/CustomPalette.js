@@ -4,7 +4,7 @@
  */
 import {
   assign
-} from './node_modules/min-dash';
+} from 'min-dash';
 
 export default function PaletteProvider(palette, create, elementFactory, translate) {
 

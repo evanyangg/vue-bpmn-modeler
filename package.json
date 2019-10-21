@@ -1,13 +1,21 @@
 {
-  "name": "bpmn-vue",
+  "name": "vue-bpmn-modeler",
   "version": "0.0.1",
   "private": false,
-  "main": "lib/bpmn-vue.umd.min.js",
+  "main": "lib/vue-bpmn-modeler.umd.min.js",
+  "author": "evanyangg",
+  "keyword": [
+    "camunda",
+    "flowable",
+    "activity",
+    "bpmn.js"
+  ],
+  "homepage": "https://github.com/evanyangg/vue-bpmn",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name bpmn-vue --dest lib src/views/index.js"
+    "lib": "vue-cli-service build --target lib --name vue-bpmn-modeler --dest lib packages/index.js"
   },
   "dependencies": {
     "bpmn-js": "^5.0.4",

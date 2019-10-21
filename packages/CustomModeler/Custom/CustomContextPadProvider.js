@@ -1,10 +1,10 @@
-import inherits from './node_modules/inherits'
+import inherits from 'inherits'
 
-import ContextPadProvider from './node_modules/bpmn-js/lib/features/context-pad/ContextPadProvider'
+import ContextPadProvider from 'bpmn-js/lib/features/context-pad/ContextPadProvider'
 
-import { is } from './node_modules/bpmn-js/lib/util/ModelUtil'
+import { is } from 'bpmn-js/lib/util/ModelUtil'
 
-import { assign, bind } from './node_modules/min-dash'
+import { assign, bind } from 'min-dash'
 
 inherits(CustomContextPadProvider, ContextPadProvider)
 
@@ -15,16 +15,16 @@ CustomContextPadProvider.$inject = [
   'elementFactory'
 ]
 
-export default function CustomContextPadProvider(injector, connect, translate, element) {
+export default function CustomContextPadProvider(injector, connect, translate) {
   injector.invoke(ContextPadProvider, this)
 
-  var cached = bind(this.getContextPadEntries, this)
-  var rules = this._rules
+  // var cached = bind(this.getContextPadEntries, this)
+  // var rules = this._rules
   var elementFactory = this._elementFactory
   var create = this._create
   var autoPlace = this._autoPlace
   var modeling = this._modeling
-  var contextPad = this._contextPadt
+  // var contextPad = this._contextPadt
 
   this.getContextPadEntries = function(element) {
     

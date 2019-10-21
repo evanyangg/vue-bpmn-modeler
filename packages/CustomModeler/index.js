@@ -1,6 +1,6 @@
-import Modeler from './node_modules/bpmn-js/lib/Modeler'
+import Modeler from 'bpmn-js/lib/Modeler'
 
-import inherits from './node_modules/inherits'
+import inherits from 'inherits'
 
 import CustomModule from './Custom'
 

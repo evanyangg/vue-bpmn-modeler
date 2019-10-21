@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import BpmnModeler from "@/CustomModeler";
-import CustomTranslate from "@/CustomTranslate/CustomTranslate";
+import BpmnModeler from "./CustomModeler";
+import CustomTranslate from "./CustomTranslate";
 import propertiesPanelModule from "bpmn-js-properties-panel";
 import propertiesProviderModule from "bpmn-js-properties-panel/lib/provider/camunda";
 import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    let container = this.$refs["container"];
+    // let container = this.$refs["container"];
     let canvas = this.$refs["canvas"];
     this.modeler = new BpmnModeler({
       container: canvas,
@@ -44,7 +44,6 @@ export default {
     // 设置a标签下载
     function setEncoded(link, name, data) {
       let encodedData = encodeURIComponent(data);
-
       if (data) {
         link.addClass("active").attr({
           href: "data:application/bpmn20-xml;charset=UTF-8," + encodedData,
