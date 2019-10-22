@@ -1,17 +1,20 @@
 <template>
   <div id="app">
-    <BpmnModeler v-model="demo"></BpmnModeler>
+    <BpmnModeler v-model="modeler"></BpmnModeler>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      demo: {}
+      modeler: {
+        xmlData: "",
+        svgImage: ""
+      }
     }
   },
   watch: {
-    demo (val) {
+    modeler (val) {
       console.log(val)
     }
   }

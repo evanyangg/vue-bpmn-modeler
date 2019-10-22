@@ -4,7 +4,7 @@ import ContextPadProvider from 'bpmn-js/lib/features/context-pad/ContextPadProvi
 
 import { is } from 'bpmn-js/lib/util/ModelUtil'
 
-import { assign, bind } from 'min-dash'
+import { assign } from 'min-dash'
 
 inherits(CustomContextPadProvider, ContextPadProvider)
 
@@ -69,25 +69,25 @@ export default function CustomContextPadProvider(injector, connect, translate) {
       }
     }
 
-    function removeElement(e) {
+    function removeElement() {
       modeling.removeElements([element])
     }
 
-    function appendUserTask(event, element) {
-      if (autoPlace) {
-        const shape = elementFactory.createShape({ type: 'bpmn:UserTask' })
+    // function appendUserTask(event, element) {
+    //   if (autoPlace) {
+    //     const shape = elementFactory.createShape({ type: 'bpmn:UserTask' })
 
-        autoPlace.append(element, shape)
-      } else {
-        appendUserTaskStart(event, element)
-      }
-    }
+    //     autoPlace.append(element, shape)
+    //   } else {
+    //     appendUserTaskStart(event, element)
+    //   }
+    // }
 
-    function appendUserTaskStart(event) {
-      const shape = elementFactory.createShape({ type: 'bpmn:UserTask' })
+    // function appendUserTaskStart(event) {
+    //   const shape = elementFactory.createShape({ type: 'bpmn:UserTask' })
 
-      create.start(event, shape, element)
-    }
+    //   create.start(event, shape, element)
+    // }
 
     // 定义开始节点 扩展的操作
     if (is(businessObject, 'bpmn:StartEvent')) {

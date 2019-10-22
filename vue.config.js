@@ -10,13 +10,34 @@ module.exports = {
       filename: 'index.html'
     }
   },
+  css: {
+    extract: true, // 是否使用css分离插件 ExtractTextPlugin
+    sourceMap: false, // 开启 CSS source maps?
+    loaderOptions: {
+        less: {
+            javascriptEnabled: true //less 配置
+        }
+    }, // css预设器配置项
+    modules: false // 启用 CSS modules for all css / pre-processor files.
+  },
   chainWebpack: config => {
     config.module
       .rule("bpmn")
-      .test(/\.bpmn$/)
-      .use("raw-loader")
-      .loader("raw-loader")
-      .end()
+        .test(/\.bpmn$/)
+        .use("raw-loader")
+        .loader("raw-loader")
+        .end();
+    config.module
+      .rule("js")
+      .include
+        .add("/packages")
+        .end()
+      .use("babel")
+        .loader("babel-loader")
+        .tap(options => {
+          // 修改它的选项...
+          return options
+        });
   },
   //警告 webpack 的性能提示
   configureWebpack : {

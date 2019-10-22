@@ -1,6 +1,6 @@
 {
   "name": "vue-bpmn-modeler",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": false,
   "main": "lib/vue-bpmn-modeler.umd.min.js",
   "author": "evanyangg",
@@ -10,7 +10,7 @@
     "activity",
     "bpmn.js"
   ],
-  "homepage": "https://github.com/evanyangg/vue-bpmn",
+  "homepage": "https://github.com/evanyangg/vue-bpmn-modeler",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

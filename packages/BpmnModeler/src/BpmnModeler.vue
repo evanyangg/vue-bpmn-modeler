@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import BpmnModeler from "./CustomModeler";
-import CustomTranslate from "./CustomTranslate";
+import BpmnModeler from "../../CustomModeler";
+import CustomTranslate from "../../CustomTranslate";
 import propertiesPanelModule from "bpmn-js-properties-panel";
 import propertiesProviderModule from "bpmn-js-properties-panel/lib/provider/camunda";
 import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
@@ -42,17 +42,17 @@ export default {
 
     this.modeler.createDiagram();
     // 设置a标签下载
-    function setEncoded(link, name, data) {
-      let encodedData = encodeURIComponent(data);
-      if (data) {
-        link.addClass("active").attr({
-          href: "data:application/bpmn20-xml;charset=UTF-8," + encodedData,
-          download: name
-        });
-      } else {
-        link.removeClass("active");
-      }
-    }
+    // function setEncoded(link, name, data) {
+    //   let encodedData = encodeURIComponent(data);
+    //   if (data) {
+    //     link.addClass("active").attr({
+    //       href: "data:application/bpmn20-xml;charset=UTF-8," + encodedData,
+    //       download: name
+    //     });
+    //   } else {
+    //     link.removeClass("active");
+    //   }
+    // }
 
     // 500毫秒后自动保存当前模型设计
     let _self = this;
@@ -121,7 +121,7 @@ export default {
   }
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @import "~bpmn-js/dist/assets/diagram-js.css";
 @import "~bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 @import "~bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
@@ -130,16 +130,13 @@ export default {
 .containers {
   position: absolute;
   background-color: #ffffff;
+  top:0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
 .canvas {
   width: 100%;
   height: 100%;
-}
-.action {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
 }
 </style>
