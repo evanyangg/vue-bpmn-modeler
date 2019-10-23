@@ -87,7 +87,7 @@ export default {
       });
 
       _self.saveDiagram(function(err, xml) {
-        _self.xmlImage = xml;
+        _self.xmlData = xml;
       });
       let modelInfo = {
         xmlData: _self.xmlData,
