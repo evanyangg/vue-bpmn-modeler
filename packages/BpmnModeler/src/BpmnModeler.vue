@@ -57,8 +57,6 @@ export default {
     // 500毫秒后自动保存当前模型设计
     let _self = this;
     let exportArtifacts = debounce(function() {
-      _self.loading = true;
-
       /**
        * 修改xml属性值 isExecutable = false => true
        * isExecutable = false 后端部署流程时 不会创建流程定义数据
