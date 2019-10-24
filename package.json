@@ -1,6 +1,6 @@
 {
   "name": "vue-bpmn-modeler",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "main": "lib/vue-bpmn-modeler.umd.min.js",
   "author": "evanyangg",
