@@ -30,6 +30,31 @@ Vue.use(VueBpmnModeler);
   };
 </script>
 ```
+
+```html
+<template>
+  <BpmnViewer :xmlData="xmlData" :taskData="taskList"></BpmnViewer>
+</template>
+
+<script>
+  export default {
+    data() {
+      modeler: {
+        // 模型xml数据
+        xmlData: "",
+        // 任务列表
+        taskList: [{
+          // 任务定义的key
+          "key": "",
+          // 任务是否完成
+          "completed": true
+        }]
+      }
+    }
+  };
+</script>
+```
+
 ## Examples
 ```bash
 # clone the project
