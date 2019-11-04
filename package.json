@@ -18,9 +18,9 @@
     "lib": "vue-cli-service build --target lib --name vue-bpmn-modeler --dest lib packages/index.js"
   },
   "dependencies": {
-    "bpmn-js": "^5.0.4",
+    "bpmn-js": "^5.1.2",
     "bpmn-js-properties-panel": "^0.32.1",
-    "camunda-bpmn-moddle": "^4.1.2",
+    "camunda-bpmn-moddle": "^4.3.0",
     "core-js": "^2.6.5",
     "diagram-js-minimap": "^2.0.1",
     "inherits": "^2.0.4",

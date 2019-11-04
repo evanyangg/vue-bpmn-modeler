@@ -1,6 +1,8 @@
 import BpmnModeler from './BpmnModeler'
+import BpmnViewer from './BpmnViewer'
 const components = [
-  BpmnModeler
+  BpmnModeler,
+  BpmnViewer
 ]
 
 const install = function (Vue) {
@@ -12,5 +14,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 export default {
   install,
-  BpmnModeler
+  BpmnModeler,
+  BpmnViewer
 }

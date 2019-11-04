@@ -78,8 +78,6 @@ export default {
           });
         }
       })
-      // console.log(rootElement.children)
-
       _self.saveSVG(function(err, svg) {
         _self.svgImage = svg;
       });
@@ -122,8 +120,6 @@ export default {
 <style lang="less" scoped>
 @import "~bpmn-js/dist/assets/diagram-js.css";
 @import "~bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
-@import "~bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css";
-@import "~bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 @import "~diagram-js-minimap/assets/diagram-js-minimap.css";
 .containers {
   position: absolute;
