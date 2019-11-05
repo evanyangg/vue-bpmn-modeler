@@ -10,10 +10,16 @@ export default {
   data() {
     return {
       propXmlData: demo,
-      propTaskList: [{
-        key: 'UserTask_06zjapk',
-        completed: true
-      }],
+      propTaskList: [
+        {
+          key: 'UserTask_06zjapk',
+          completed: true
+        },
+        {
+          key: 'UserTask_07cj5cp',
+          completed: false
+        }
+      ],
       modeler: {
         xmlData: "",
         svgImage: ""
