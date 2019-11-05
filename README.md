@@ -31,7 +31,8 @@ Vue.use(VueBpmnModeler);
   };
 </script>
 ```
-![viewer](https://image.ulitom.com/other/viewer.png)
+![viewer](https://image.ulitom.com/other/viewer.png "todo task")
+![viewer](https://image.ulitom.com/other/viewer-complete.png "completed task")
 ```html
 <template>
   <BpmnViewer :xmlData="xmlData" :taskData="taskList"></BpmnViewer>
