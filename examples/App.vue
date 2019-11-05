@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <BpmnModeler v-model="modeler"></BpmnModeler>
-    <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
+    <!-- <BpmnModeler v-model="modeler"></BpmnModeler> -->
+    <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer>
   </div>
 </template>
 <script>
@@ -10,7 +10,10 @@ export default {
   data() {
     return {
       propXmlData: demo,
-      propTaskList: ['UserTask_06zjapk'],
+      propTaskList: [{
+        key: 'UserTask_06zjapk',
+        completed: true
+      }],
       modeler: {
         xmlData: "",
         svgImage: ""

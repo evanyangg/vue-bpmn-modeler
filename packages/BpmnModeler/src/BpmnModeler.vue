@@ -7,8 +7,6 @@
 <script>
 import BpmnModeler from "../../CustomModeler";
 import CustomTranslate from "../../CustomTranslate";
-import propertiesPanelModule from "bpmn-js-properties-panel";
-import propertiesProviderModule from "bpmn-js-properties-panel/lib/provider/camunda";
 import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
 import minimapModule from "diagram-js-minimap";
 import { debounce } from "min-dash";
@@ -25,15 +23,12 @@ export default {
     };
   },
   mounted() {
-    // let container = this.$refs["container"];
     let canvas = this.$refs["canvas"];
     this.modeler = new BpmnModeler({
       container: canvas,
       additionalModules: [
         customTranslateModule,
-        minimapModule,
-        propertiesPanelModule,
-        propertiesProviderModule
+        minimapModule
       ],
       moddleExtensions: {
         camunda: camundaModdleDescriptor
@@ -41,18 +36,6 @@ export default {
     });
 
     this.modeler.createDiagram();
-    // 设置a标签下载
-    // function setEncoded(link, name, data) {
-    //   let encodedData = encodeURIComponent(data);
-    //   if (data) {
-    //     link.addClass("active").attr({
-    //       href: "data:application/bpmn20-xml;charset=UTF-8," + encodedData,
-    //       download: name
-    //     });
-    //   } else {
-    //     link.removeClass("active");
-    //   }
-    // }
 
     // 500毫秒后自动保存当前模型设计
     let _self = this;
@@ -90,7 +73,7 @@ export default {
         svgImage: _self.svgImage
       }
       _self.$emit('input', modelInfo)
-    }, 0);
+    }, 10);
     this.modeler.on("commandStack.changed", exportArtifacts);
     exportArtifacts()
   },

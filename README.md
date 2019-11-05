@@ -12,6 +12,7 @@ import VueBpmnModeler from "vue-bpmn-modeler";
 import "vue-bpmn-modeler/lib/vue-bpmn-modeler.css";
 Vue.use(VueBpmnModeler);
 ```
+![viewer](https://image.ulitom.com/other/modeler.png)
 ```html
 <template>
   <BpmnModeler v-model="modeler"></BpmnModeler>
@@ -30,7 +31,7 @@ Vue.use(VueBpmnModeler);
   };
 </script>
 ```
-
+![viewer](https://image.ulitom.com/other/viewer.png)
 ```html
 <template>
   <BpmnViewer :xmlData="xmlData" :taskData="taskList"></BpmnViewer>

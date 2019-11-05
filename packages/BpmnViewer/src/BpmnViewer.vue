@@ -48,7 +48,7 @@ export default {
           });
           canvas.addMarker('StartEvent_1', 'highlight');
           _self.taskList.forEach(n => {
-            overlays.add(n, {
+            overlays.add(n.key, {
                 position: {
                   top: 0,
                   left: 0
@@ -56,9 +56,9 @@ export default {
                 html: overlayHtml
               });
             if (n.completed) {
-              canvas.addMarker(n, 'highlight');
+              canvas.addMarker(n.key, 'highlight');
             } else {
-              canvas.addMarker(n, 'highlight-todo');
+              canvas.addMarker(n.key, 'highlight-todo');
             }
           });
         }
