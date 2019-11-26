@@ -102,7 +102,7 @@ export default {
       let directEditing = this.modeler.injector.get('directEditing', false);
       directEditing.complete()
       let eventBus = this.modeler.injector.get('eventBus', false);
-      eventBus.eventBus.fire('element.click', '')
+      eventBus.fire('element.click', '')
     }
   }
 };
