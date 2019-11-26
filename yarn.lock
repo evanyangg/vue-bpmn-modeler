@@ -1611,16 +1611,16 @@ bpmn-font@^0.9.3:
   resolved "https://registry.npm.taobao.org/bpmn-font/download/bpmn-font-0.9.3.tgz#03c2c906dbd30653e5b1f113d92c78cab6710df4"
   integrity sha1-A8LJBtvTBlPlsfET2Sx4yrZxDfQ=
 
-bpmn-js@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-5.1.2.tgz#b449d1efa734b4a4faf2f1d865c2254101d7252c"
-  integrity sha512-s674cn+N4zhmlGMBOBFp6zAGV3Qd23ss13bW+Hy6gg23wxExVqlY/xRwE/FnrfvYmRag4Pz1c+lyP7OYD8VwuA==
+bpmn-js@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.npm.taobao.org/bpmn-js/download/bpmn-js-6.0.4.tgz#cd04d43d926ef8998bed70e8edf62745fbf73fa3"
+  integrity sha1-zQTUPZJu+JmL7XDo7fYnRfv3P6M=
   dependencies:
     bpmn-font "^0.9.3"
     bpmn-moddle "^6.0.0"
     css.escape "^1.5.1"
-    diagram-js "^5.1.1"
-    diagram-js-direct-editing "^1.6.0"
+    diagram-js "^6.0.2"
+    diagram-js-direct-editing "^1.6.1"
     ids "^1.0.0"
     inherits "^2.0.1"
     min-dash "^3.5.1"
@@ -1895,8 +1895,8 @@ camelcase@^5.0.0:
 
 camunda-bpmn-moddle@^4.3.0:
   version "4.3.0"
-  resolved "https://registry.npmjs.org/camunda-bpmn-moddle/-/camunda-bpmn-moddle-4.3.0.tgz#b8c5e8c8f55a83b0e251a0532ee4d9c822b53a6d"
-  integrity sha512-feIu3ARiXwSmrm9s9M33RB9HCbUvvrKYABjKK8hD9ZcH7zSNlM03BDHds0Bp5V78xn4ZWgNgfByS9mahGvaiTg==
+  resolved "https://registry.npm.taobao.org/camunda-bpmn-moddle/download/camunda-bpmn-moddle-4.3.0.tgz#b8c5e8c8f55a83b0e251a0532ee4d9c822b53a6d"
+  integrity sha1-uMXoyPVag7DiUaBTLuTZyCK1Om0=
   dependencies:
     min-dash "^3.0.0"
 
@@ -2796,15 +2796,15 @@ detect-node@^2.0.4:
   resolved "https://registry.npm.taobao.org/detect-node/download/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha1-AU7o+PZpxcWAI9pkuBecCDooxGw=
 
-diagram-js-direct-editing@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.npm.taobao.org/diagram-js-direct-editing/download/diagram-js-direct-editing-1.6.0.tgz#8c0e220266c8234969a46a47c0f5609decfe1ee3"
-  integrity sha1-jA4iAmbII0lppGpHwPVgnez+HuM=
+diagram-js-direct-editing@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npm.taobao.org/diagram-js-direct-editing/download/diagram-js-direct-editing-1.6.1.tgz#c2a040f7d910631e5c8f178bbc326db3afbd1ae0"
+  integrity sha1-wqBA99kQYx5cjxeLvDJts6+9GuA=
   dependencies:
     min-dash "^3.0.0"
     min-dom "^3.0.0"
 
-diagram-js-minimap@^2.0.1:
+diagram-js-minimap@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/diagram-js-minimap/download/diagram-js-minimap-2.0.3.tgz#cb77dcf6c0bddb1ce5299fc85dc342be5c3090df"
   integrity sha1-y3fc9sC92xzlKZ/IXcNCvlwwkN8=
@@ -2814,10 +2814,10 @@ diagram-js-minimap@^2.0.1:
     min-dom "^3.1.1"
     tiny-svg "^2.2.2"
 
-diagram-js@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-5.1.1.tgz#511a41bd5fbe74dd63bb0789d9fb1049aabd054c"
-  integrity sha512-SLxHOfEDLBC7LBjQFmXyvQXt4P5yZYFnTvhsCZZtJyQCadrVs71cUlchMmH+kUS/zaga/BkPWFbnV1d+4MsF8A==
+diagram-js@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npm.taobao.org/diagram-js/download/diagram-js-6.0.2.tgz#5fb40c9670717d196141cb620e9384322e03e3b7"
+  integrity sha1-X7QMlnBxfRlhQctiDpOEMi4D47c=
   dependencies:
     css.escape "^1.5.1"
     didi "^4.0.0"
