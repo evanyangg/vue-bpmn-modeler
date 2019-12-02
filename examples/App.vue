@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <BpmnModeler v-model="modeler"></BpmnModeler>
+    <BpmnModeler v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
     <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
   </div>
 </template>

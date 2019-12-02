@@ -42,7 +42,7 @@ export default {
         camunda: camundaModdleDescriptor
       }
     });
-    this.openDiagram();
+    this.openDiagram(this.diagramXML);
     // 自动保存当前模型设计
     let _self = this;
     let exportArtifacts = debounce(function() {
