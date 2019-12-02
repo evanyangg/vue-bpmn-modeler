@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <!-- <BpmnModeler v-model="modeler"></BpmnModeler> -->
-    <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer>
+    <BpmnModeler v-model="modeler"></BpmnModeler>
+    <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
   </div>
 </template>
 <script>

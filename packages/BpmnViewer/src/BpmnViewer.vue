@@ -6,7 +6,6 @@
 
 <script>
 import BpmnViewer from 'bpmn-js/lib/NavigatedViewer';
-// import BpmnModeler from 'bpmn-js/lib/Modeler';
 export default {
   name: "BpmnViewer",
   props: {
@@ -32,12 +31,10 @@ export default {
       if (err) {
         console.log('加载失败', err);
       } else {
-        console.log(_self.taskList)
         let canvas = bpmnViewer.get('canvas');
         canvas.zoom('fit-viewport')
         if (_self.taskList && _self.taskList.length > 0) {
           let overlays = bpmnViewer.get('overlays');
-          // let elementRegistry = bpmnViewer.get('elementRegistry');
           let overlayHtml = document.createElement('div');
           overlays.add('StartEvent_1', {
             position: {

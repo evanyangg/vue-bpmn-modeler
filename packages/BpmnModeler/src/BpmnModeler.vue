@@ -15,12 +15,20 @@ let customTranslateModule = {
 };
 export default {
   name: "BpmnModeler",
+  props: {
+    diagramXML: String
+  },
   data() {
     return {
       modeler: {},
       xmlData: "",
       svgImage: ""
     };
+  },
+  watch: {
+    diagramXML(val) {
+      this.openDiagram(val)
+    }
   },
   mounted() {
     let canvas = this.$refs["canvas"];
@@ -34,33 +42,11 @@ export default {
         camunda: camundaModdleDescriptor
       }
     });
-
-    this.modeler.createDiagram();
-
-    // 500毫秒后自动保存当前模型设计
+    this.openDiagram();
+    // 自动保存当前模型设计
     let _self = this;
     let exportArtifacts = debounce(function() {
-      /**
-       * 修改xml属性值 isExecutable = false => true
-       * isExecutable = false 后端部署流程时 不会创建流程定义数据
-       */
-      let modelerCanvas = _self.modeler.get("canvas");
-      let rootElement = modelerCanvas.getRootElement();
-      let modeling = _self.modeler.get("modeling");
-      // modeling.updateProperties(rootElement, {
-      //   // isExecutable: true
-      // });
-      rootElement.children.forEach(n => {
-        if (n.type === 'bpmn:StartEvent') {
-          modeling.updateProperties(n, {
-            name: '开始',
-          });
-        } else if (n.type === 'bpmn:EndEvent') {
-          modeling.updateProperties(n, {
-            name: '结束',
-          });
-        }
-      })
+
       _self.saveSVG(function(err, svg) {
         _self.svgImage = svg;
       });
@@ -78,16 +64,42 @@ export default {
     exportArtifacts()
   },
   methods: {
-    openDiagram: function(xml) {
-      let _self = this;
-      this.modeler.importXML(xml, function(err) {
-        if (err) {
-          _self.modeler.get("minimap").open();
-          console.error(err);
-        } else {
-          _self.modeler.get("minimap").open();
-        }
-      });
+    openDiagram(xml) {
+      if (xml) {
+        this.modeler.importXML(xml, function(err) {
+          if (err) {
+            console.error(err);
+          }
+        });
+        this.xmlData = xml;
+      } else {
+        this.modeler.createDiagram();
+        let _self = this;
+        setTimeout(() => {
+          /**
+           * 修改xml属性值 isExecutable = false => true
+           * isExecutable = false 后端部署流程时 不会创建流程定义数据
+           */
+          let modelerCanvas = _self.modeler.get("canvas");
+          let rootElement = modelerCanvas.getRootElement();
+          let modeling = _self.modeler.get("modeling");
+          // modeling.updateProperties(rootElement, {
+          //   // isExecutable: true
+          // });
+          // 设定开始节点名称和结束节点名称
+          rootElement.children.forEach(n => {
+            if (n.type === 'bpmn:StartEvent') {
+              modeling.updateProperties(n, {
+                name: '开始',
+              });
+            } else if (n.type === 'bpmn:EndEvent') {
+              modeling.updateProperties(n, {
+                name: '结束',
+              });
+            }
+          })
+        });
+      }
     },
     saveSVG(done) {
       this.modeler.saveSVG(done);

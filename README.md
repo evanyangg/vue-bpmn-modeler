@@ -22,12 +22,65 @@ Vue.use(VueBpmnModeler);
 
 <script>
   export default {
+    name: "BpmnModeler",
+    props: {
+      diagramXML: String
+    },
+    watch: {
+      diagramXML(val) {
+        this.openDiagram(val)
+      }
+    },
     data() {
       modeler: {
         // 模型xml数据
         xmlData: "",
         // svg图片数据
         svgImage: ""
+      }
+    },
+    // 详细代码请参考源码
+    mounted() {
+    },
+    methods: {
+
+      openDiagram(xml) {
+        if (xml) {
+          this.modeler.importXML(xml, function(err) {
+            if (err) {
+              console.error(err);
+            } else {
+            }
+          });
+          this.xmlData = xml;
+        } else {
+          this.modeler.createDiagram();
+          let _self = this;
+          setTimeout(() => {
+            /**
+             * 修改xml属性值 isExecutable = false => true
+             * isExecutable = false 后端部署流程时 不会创建流程定义数据
+             */
+            let modelerCanvas = _self.modeler.get("canvas");
+            let rootElement = modelerCanvas.getRootElement();
+            let modeling = _self.modeler.get("modeling");
+            // modeling.updateProperties(rootElement, {
+            //   // isExecutable: true
+            // });
+            // 设定开始节点名称和结束节点名称
+            rootElement.children.forEach(n => {
+              if (n.type === 'bpmn:StartEvent') {
+                modeling.updateProperties(n, {
+                  name: '开始',
+                });
+              } else if (n.type === 'bpmn:EndEvent') {
+                modeling.updateProperties(n, {
+                  name: '结束',
+                });
+              }
+            })
+          });
+        }
       }
     }
   };
