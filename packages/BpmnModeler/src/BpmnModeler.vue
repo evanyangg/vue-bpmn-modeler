@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="containers" @mouseleave="focusOut">
+  <div ref="container" class="containers" @mousemove="focusOut">
     <div ref="canvas" class="canvas"></div>
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
     return {
       modeler: {},
       xmlData: "",
-      svgImage: ""
+      svgImage: "",
+      isSvg: false
     };
   },
   watch: {
@@ -109,12 +110,15 @@ export default {
         done(err, xml);
       });
     },
-    focusOut() {
-      // 鼠标移出编辑区域 完成输入 并 失去焦点
-      let directEditing = this.modeler.injector.get('directEditing', false);
-      directEditing.complete()
-      let eventBus = this.modeler.injector.get('eventBus', false);
-      eventBus.fire('element.click', '')
+    focusOut(event) {
+      this.isSvg = event.target.nodeName === 'svg'
+      if (this.isSvg) {
+        // 鼠标移出编辑区域 完成输入 并 失去焦点
+        let directEditing = this.modeler.injector.get('directEditing', false);
+        directEditing.complete()
+        let eventBus = this.modeler.injector.get('eventBus', false);
+        eventBus.fire('element.click', '')
+      }
     }
   }
 };
