@@ -1,6 +1,6 @@
 <template>
-  <div ref="container" class="containers" @mousemove="focusOut">
-    <div ref="canvas" class="canvas"></div>
+  <div ref="container" class="containers">
+    <div ref="canvas" class="canvas" @mousemove="focusOut"></div>
   </div>
 </template>
 
@@ -111,8 +111,9 @@ export default {
       });
     },
     focusOut(event) {
-      this.isSvg = event.target.nodeName === 'svg'
-      if (this.isSvg) {
+      let layerBase = document.querySelector('.layer-base')
+      let zoom = layerBase.parentNode.getBoundingClientRect();
+      if (event.pageX < zoom.left || event.pageX > (zoom.left + zoom.width + 40) || event.pageY < zoom.top || event.pageY > (zoom.top + zoom.height + 40)) {
         // 鼠标移出编辑区域 完成输入 并 失去焦点
         let directEditing = this.modeler.injector.get('directEditing', false);
         directEditing.complete()
