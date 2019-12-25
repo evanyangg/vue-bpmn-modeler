@@ -1634,15 +1634,15 @@ bpmn-font@^0.9.3:
   resolved "https://registry.npm.taobao.org/bpmn-font/download/bpmn-font-0.9.3.tgz#03c2c906dbd30653e5b1f113d92c78cab6710df4"
   integrity sha1-A8LJBtvTBlPlsfET2Sx4yrZxDfQ=
 
-bpmn-js@^6.0.4:
-  version "6.0.6"
-  resolved "https://registry.npm.taobao.org/bpmn-js/download/bpmn-js-6.0.6.tgz#33c0ad674f1a8ab2d92087737b5cb52f6cce9c96"
-  integrity sha1-M8CtZ08airLZIIdze1y1L2zOnJY=
+bpmn-js@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-6.1.1.tgz#3094ae8c2d8a0c404bb2de6715b463d6609f0a5a"
+  integrity sha512-z9dhK9UPPJ2rvpOZxPiWK1VyC7ASBLgSZMZ+uDDdzErwZTKX1uCPpROkS3giyTg6EKuXgtnuYF8XjGAW9B9tXA==
   dependencies:
     bpmn-font "^0.9.3"
     bpmn-moddle "^6.0.0"
     css.escape "^1.5.1"
-    diagram-js "^6.0.2"
+    diagram-js "^6.2.1"
     diagram-js-direct-editing "^1.6.1"
     ids "^1.0.0"
     inherits "^2.0.1"
@@ -2852,10 +2852,10 @@ diagram-js-minimap@^2.0.3:
     min-dom "^3.1.1"
     tiny-svg "^2.2.2"
 
-diagram-js@^6.0.2:
-  version "6.1.0"
-  resolved "https://registry.npm.taobao.org/diagram-js/download/diagram-js-6.1.0.tgz#cf96d0661bb69e3c9146830a02b821fee519c51e"
-  integrity sha1-z5bQZhu2njyRRoMKArgh/uUZxR4=
+diagram-js@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.npmjs.org/diagram-js/-/diagram-js-6.2.1.tgz#90efe2ac3ded6086710e733a23158d84818bde85"
+  integrity sha512-V9MDfvGVA6RFcqmzaG6w0sOMxr8AZTVYRU9GobsAxV01o4OfJc7UhHJyEkhFTdoKQnOep0MaMDJVnEwjeTD+jg==
   dependencies:
     css.escape "^1.5.1"
     didi "^4.0.0"
@@ -2864,7 +2864,7 @@ diagram-js@^6.0.2:
     min-dash "^3.5.0"
     min-dom "^3.0.0"
     object-refs "^0.3.0"
-    path-intersection "^1.0.2"
+    path-intersection "^2.1.0"
     tiny-svg "^2.2.1"
 
 didi@^4.0.0:
@@ -6180,10 +6180,10 @@ path-exists@^4.0.0:
   resolved "https://registry.npm.taobao.org/path-exists/download/path-exists-4.0.0.tgz#513bdbe2d3b95d7762e8c1137efa195c6c61b5b3"
   integrity sha1-UTvb4tO5XXdi6METfvoZXGxhtbM=
 
-path-intersection@^1.0.2:
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/path-intersection/download/path-intersection-1.1.1.tgz#a1185ebae7cd9f6d86fd299533c3f7c638a01559"
-  integrity sha1-oRheuufNn22G/SmVM8P3xjigFVk=
+path-intersection@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/path-intersection/-/path-intersection-2.1.0.tgz#195aee99b72abedc5251eb238c67bed05d60a523"
+  integrity sha512-QUhfkGUIEv0v+1P6yGbUh+UjeMtiko2AT6hbzbbUUi9vC3uYeBPiwguW6AjOT/d7vwYs6+jZrbqCkuRECb+Odw==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
@@ -8422,10 +8422,10 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.6.10:
-  version "2.6.10"
-  resolved "https://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.6.10.tgz#323b4f3495f04faa3503337a82f5d6507799c9cc"
-  integrity sha1-MjtPNJXwT6o1AzN6gvXWUHeZycw=
+vue-template-compiler@^2.6.11:
+  version "2.6.11"
+  resolved "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.6.11.tgz#c04704ef8f498b153130018993e56309d4698080"
+  integrity sha512-KIq15bvQDrcCjpGjrAhx4mUlyyHfdmTaoNfeoATHLAiWB+MU3cx4lOzMwrnUh9cCxy0Lt1T11hAFY6TQgroUAA==
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
@@ -8435,10 +8435,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.10:
-  version "2.6.10"
-  resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=
+vue@^2.6.11:
+  version "2.6.11"
+  resolved "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
+  integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
 watchpack@^1.6.0:
   version "1.6.0"
