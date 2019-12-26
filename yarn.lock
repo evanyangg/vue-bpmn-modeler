@@ -1634,6 +1634,13 @@ bpmn-font@^0.9.3:
   resolved "https://registry.npm.taobao.org/bpmn-font/download/bpmn-font-0.9.3.tgz#03c2c906dbd30653e5b1f113d92c78cab6710df4"
   integrity sha1-A8LJBtvTBlPlsfET2Sx4yrZxDfQ=
 
+bpmn-js-cli@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/bpmn-js-cli/-/bpmn-js-cli-1.1.0.tgz#6c18fa73aa6145d8fd6753543728feedaf049b0d"
+  integrity sha512-DfoRt4+y1rj0tK78Ga1WI2tHSJMthDjJG5botsFz7TtONVUSJ9XvV4i8pNgV4Mmhj4gmnBJ3SBsHumBJ+aMeoA==
+  dependencies:
+    min-dash "^3.1.0"
+
 bpmn-js@^6.1.1:
   version "6.1.1"
   resolved "https://registry.npmjs.org/bpmn-js/-/bpmn-js-6.1.1.tgz#3094ae8c2d8a0c404bb2de6715b463d6609f0a5a"
@@ -5351,7 +5358,7 @@ mimic-fn@^2.0.0, mimic-fn@^2.1.0:
   resolved "https://registry.npm.taobao.org/mimic-fn/download/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha1-ftLCzMyvhNP/y3pptXcR/CCDQBs=
 
-min-dash@^3.0.0, min-dash@^3.5.0, min-dash@^3.5.1, min-dash@^3.5.2:
+min-dash@^3.0.0, min-dash@^3.1.0, min-dash@^3.5.0, min-dash@^3.5.1, min-dash@^3.5.2:
   version "3.5.2"
   resolved "https://registry.npm.taobao.org/min-dash/download/min-dash-3.5.2.tgz#23786fa289116ba3656038e16511577413d27200"
   integrity sha1-I3hvookRa6NlYDjhZRFXdBPScgA=

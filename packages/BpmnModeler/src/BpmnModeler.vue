@@ -9,6 +9,7 @@ import BpmnModeler from "../../CustomModeler";
 import CustomTranslate from "../../CustomTranslate";
 import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
 import minimapModule from "diagram-js-minimap";
+import CliModule from 'bpmn-js-cli';
 import { debounce } from "min-dash";
 let customTranslateModule = {
   translate: ["value", CustomTranslate]
@@ -37,8 +38,12 @@ export default {
       container: canvas,
       additionalModules: [
         customTranslateModule,
-        minimapModule
+        minimapModule,
+        CliModule
       ],
+      cli: {
+        bindTo: 'cli'
+      },
       moddleExtensions: {
         camunda: camundaModdleDescriptor
       }
@@ -65,42 +70,69 @@ export default {
     exportArtifacts()
   },
   methods: {
-    openDiagram(xml) {
-      if (xml) {
-        this.modeler.importXML(xml, function(err) {
-          if (err) {
-            console.error(err);
-          }
-        });
-        this.xmlData = xml;
-      } else {
-        this.modeler.createDiagram();
-        let _self = this;
-        setTimeout(() => {
-          /**
-           * 修改xml属性值 isExecutable = false => true
-           * isExecutable = false 后端部署流程时 不会创建流程定义数据
-           */
-          let modelerCanvas = _self.modeler.get("canvas");
-          let rootElement = modelerCanvas.getRootElement();
-          let modeling = _self.modeler.get("modeling");
-          // modeling.updateProperties(rootElement, {
-          //   // isExecutable: true
-          // });
-          // 设定开始节点名称和结束节点名称
-          rootElement.children.forEach(n => {
-            if (n.type === 'bpmn:StartEvent') {
-              modeling.updateProperties(n, {
-                name: '开始',
-              });
-            } else if (n.type === 'bpmn:EndEvent') {
-              modeling.updateProperties(n, {
-                name: '结束',
-              });
+    async addTask(taskAdd) {
+      await this.openDiagram(this.diagramXML);
+      return new Promise((resolve, reject) => { 
+        if (taskAdd && taskAdd.taskList.length > 0) {
+          let cli = window.cli;
+          cli.removeConnection(taskAdd.sourceSequenceFlow);
+          let taskActivity = taskAdd.source;
+          for (let index = 0; index < taskAdd.taskList.length; index++) {
+            taskActivity = cli.append(taskActivity, 'bpmn:UserTask');
+            taskAdd.taskList[index].taskActivity = taskActivity;
+            cli.setLabel(taskActivity, taskAdd.taskList[index].label);
+            cli.move(taskActivity, { x: -200, y: 120 });
+            if (index ===  taskAdd.taskList.length - 1) {
+              cli.connect(taskActivity, taskAdd.target, 'bpmn:SequenceFlow') 
             }
-          })
-        });
-      }
+          }
+          resolve(taskAdd.taskList);
+        } else {
+          reject('params error')
+        }
+      })
+    },
+    openDiagram(xml) {
+       return new Promise((resolve, reject) => { 
+        if (xml) {
+          this.modeler.importXML(xml, function(err) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve()
+            }
+          });
+          this.xmlData = xml;
+        } else {
+          this.modeler.createDiagram();
+          let _self = this;
+          setTimeout(() => {
+            /**
+             * 修改xml属性值 isExecutable = false => true
+             * isExecutable = false 后端部署流程时 不会创建流程定义数据
+             */
+            let modelerCanvas = _self.modeler.get("canvas");
+            let rootElement = modelerCanvas.getRootElement();
+            let modeling = _self.modeler.get("modeling");
+            // modeling.updateProperties(rootElement, {
+            //   // isExecutable: true
+            // });
+            // 设定开始节点名称和结束节点名称
+            rootElement.children.forEach(n => {
+              if (n.type === 'bpmn:StartEvent') {
+                modeling.updateProperties(n, {
+                  name: '开始',
+                });
+              } else if (n.type === 'bpmn:EndEvent') {
+                modeling.updateProperties(n, {
+                  name: '结束',
+                });
+              }
+            })
+            resolve();
+          });
+        }
+      })
     },
     saveSVG(done) {
       this.modeler.saveSVG(done);

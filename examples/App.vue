@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <BpmnModeler v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
+    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
     <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
+    <!-- <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button> -->
   </div>
 </template>
 <script>
@@ -30,8 +31,37 @@ export default {
     modeler (val) {
       console.log(val)
     }
+  },
+  methods: {
+    test (list) {
+      console.log(list);
+    },
+    addTask () {
+      let taskAdd = {
+        source: 'UserTask_06zjapk',
+        sourceSequenceFlow: 'SequenceFlow_1l3hfbd',
+        target: 'ExclusiveGateway_13yj8os',
+        taskList: [
+          {
+            label: 'test task'
+          }
+        ]
+      }
+      this.$refs.modeler.addTask(taskAdd).then((data) => {
+        // new task list
+        console.log(data);
+      });
+    }
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
+.zhinengkan {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
 </style>
