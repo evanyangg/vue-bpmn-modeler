@@ -125,7 +125,7 @@ taskList: 表示流程的历史记录 可以通过服务的接口 historyService
 ```
 #### 动态添加任务节点
 #### dynamically add task
-![viewer](https://image.ulitom.com/other/add-task.png)
+![viewer](https://image.ulitom.com/other/add-task.gif)
 ```javascript
 addTask () {
   let taskAdd = {
