@@ -43,7 +43,7 @@ export default {
             },
             html: overlayHtml
           });
-          canvas.addMarker('StartEvent_1', 'highlight');
+          
           _self.taskList.forEach(n => {
             overlays.add(n.key, {
                 position: {
@@ -58,6 +58,28 @@ export default {
               canvas.addMarker(n.key, 'highlight-todo');
             }
           });
+          // 判断开始节点或结束节点完成
+          bpmnViewer._definitions.rootElements[0].flowElements.forEach(n => {
+            if (n.$type === 'bpmn:EndEvent') {
+              n.incoming.forEach(nn => {
+                let completeTask = _self.taskList.find(m => m.key === nn.sourceRef.id && m.completed)
+                completeTask = true;
+                if (completeTask) {
+                  canvas.addMarker(n.id, 'highlight');
+                  return
+                }
+              });
+            } else if (n.$type === 'bpmn:StartEvent') {
+              n.outgoing.forEach(nn => {
+                let completeTask = _self.taskList.find(m => m.key === nn.targetRef.id && m.completed)
+                completeTask = true;
+                if (completeTask) {
+                  canvas.addMarker(n.id, 'highlight');
+                  return
+                }
+              });
+            }
+          })
         }
       }
     });

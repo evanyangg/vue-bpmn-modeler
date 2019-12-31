@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
-    <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
+    <!-- <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler> -->
+    <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer>
     <!-- <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button> -->
   </div>
 </template>
@@ -43,7 +43,10 @@ export default {
         target: 'ExclusiveGateway_13yj8os',
         taskList: [
           {
-            label: 'test task'
+            label: 'test task1'
+          },
+          {
+            label: 'test task2'
           }
         ]
       }
