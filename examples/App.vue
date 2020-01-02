@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler> -->
-    <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer>
-    <!-- <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button> -->
+    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
+    <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
+    <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button>
   </div>
 </template>
 <script>
@@ -47,10 +47,8 @@ export default {
     addTask () {
       let taskAdd = {
         source: 'UserTask_07cj5cp',
-        replaceSequenceFlow: 'SequenceFlow_03gqy8l',
         replaceTaskActivity: 'UserTask_0hkfnx2',
         target: 'UserTask_1pvvtgn',
-        // target: 'UserTask_0hkfnx2',
         taskList: [
           {
             label: 'test task1'

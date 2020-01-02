@@ -71,13 +71,23 @@ export default {
   },
   methods: {
     async addTask(taskAdd) {
+      let _self = this;
       await this.openDiagram(this.diagramXML);
       return new Promise((resolve, reject) => { 
         if (taskAdd && taskAdd.taskList.length > 0) {
+          let modelerCanvas = _self.modeler.get("canvas");
+          let rootElement = modelerCanvas.getRootElement();
           let cli = window.cli;
-          cli.removeConnection(taskAdd.replaceSequenceFlow);
+          // 删除目标task sequenceFlow
+          rootElement.children.forEach(n => {
+            if (n.type === 'bpmn:UserTask' && n.id === taskAdd.replaceTaskActivity) {
+              n.outgoing.forEach(nn => {
+                cli.removeConnection(nn.id);
+              })
+            }
+          })
           if (taskAdd.replaceTaskActivity) {
-            cli.removeShape(taskAdd.replaceTaskActivity)
+            cli.removeShape(taskAdd.replaceTaskActivity);
           }
           let taskActivity = taskAdd.source;
           for (let index = 0; index < taskAdd.taskList.length; index++) {
