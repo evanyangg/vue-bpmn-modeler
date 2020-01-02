@@ -75,7 +75,10 @@ export default {
       return new Promise((resolve, reject) => { 
         if (taskAdd && taskAdd.taskList.length > 0) {
           let cli = window.cli;
-          cli.removeConnection(taskAdd.sourceSequenceFlow);
+          cli.removeConnection(taskAdd.replaceSequenceFlow);
+          if (taskAdd.replaceTaskActivity) {
+            cli.removeShape(taskAdd.replaceTaskActivity)
+          }
           let taskActivity = taskAdd.source;
           for (let index = 0; index < taskAdd.taskList.length; index++) {
             taskActivity = cli.append(taskActivity, 'bpmn:UserTask');

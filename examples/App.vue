@@ -18,6 +18,14 @@ export default {
         },
         {
           key: 'UserTask_07cj5cp',
+          completed: true
+        },
+        {
+          key: 'UserTask_0hkfnx2',
+          completed: true
+        },
+        {
+          key: 'UserTask_1pvvtgn',
           completed: false
         }
       ],
@@ -38,9 +46,11 @@ export default {
     },
     addTask () {
       let taskAdd = {
-        source: 'UserTask_06zjapk',
-        sourceSequenceFlow: 'SequenceFlow_1l3hfbd',
-        target: 'ExclusiveGateway_13yj8os',
+        source: 'UserTask_07cj5cp',
+        replaceSequenceFlow: 'SequenceFlow_03gqy8l',
+        replaceTaskActivity: 'UserTask_0hkfnx2',
+        target: 'UserTask_1pvvtgn',
+        // target: 'UserTask_0hkfnx2',
         taskList: [
           {
             label: 'test task1'
