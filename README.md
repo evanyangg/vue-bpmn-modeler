@@ -131,7 +131,7 @@ addTask () {
   let taskAdd = {
     // 上一个节点
     source: 'UserTask_06zjapk',
-    // 需要替换的任务节点,如果为空则为插入加点
+    // 需要替换的任务节点,如果为空则为插入节点
     replaceTaskActivity: 'UserTask_0hkfnx2',
     // 下一个节点
     target: 'ExclusiveGateway_13yj8os',
