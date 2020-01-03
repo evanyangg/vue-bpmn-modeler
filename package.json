@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "bpmn-js": "^6.1.1",
-    "bpmn-js-cli": "^1.1.0",
+    "bpmn-js-cli": "^1.2.0",
     "camunda-bpmn-moddle": "^4.3.0",
     "diagram-js-minimap": "^2.0.3",
     "inherits": "^2.0.4",

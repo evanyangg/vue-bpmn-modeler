@@ -131,8 +131,8 @@ addTask () {
   let taskAdd = {
     // 上一个节点
     source: 'UserTask_06zjapk',
-    // 上一个节点箭头
-    sourceSequenceFlow: 'SequenceFlow_1l3hfbd',
+    // 需要替换的任务节点,如果为空则为插入加点
+    replaceTaskActivity: 'UserTask_0hkfnx2',
     // 下一个节点
     target: 'ExclusiveGateway_13yj8os',
     taskList: [

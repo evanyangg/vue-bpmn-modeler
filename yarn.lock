@@ -1634,10 +1634,10 @@ bpmn-font@^0.9.3:
   resolved "https://registry.npm.taobao.org/bpmn-font/download/bpmn-font-0.9.3.tgz#03c2c906dbd30653e5b1f113d92c78cab6710df4"
   integrity sha1-A8LJBtvTBlPlsfET2Sx4yrZxDfQ=
 
-bpmn-js-cli@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/bpmn-js-cli/-/bpmn-js-cli-1.1.0.tgz#6c18fa73aa6145d8fd6753543728feedaf049b0d"
-  integrity sha512-DfoRt4+y1rj0tK78Ga1WI2tHSJMthDjJG5botsFz7TtONVUSJ9XvV4i8pNgV4Mmhj4gmnBJ3SBsHumBJ+aMeoA==
+bpmn-js-cli@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/bpmn-js-cli/-/bpmn-js-cli-1.2.0.tgz#e7db1fbf6e64254bbb5fe5c54d6cef8e50657ffb"
+  integrity sha512-mjUGxzh9T4e3IN1bkSxdQhdNuzEHrkFobxXfc1zhnZa/6X5qdceBtYTSxODHf05AIrxUts/m/3OsS6UX34ou3A==
   dependencies:
     min-dash "^3.1.0"
 
