@@ -47,6 +47,8 @@ export default {
           bpmnViewer._definitions.rootElements[0].flowElements.forEach(n => {
             if (n.$type === 'bpmn:UserTask') {
                 let completeTask = _self.taskList.find(m => m.key === n.id)
+                let todoTask = _self.taskList.find(m => !m.completed)
+                let endTask = _self.taskList[_self.taskList.length - 1]
                 if (completeTask) {
                   canvas.addMarker(n.id, completeTask.completed ? 'highlight' : 'highlight-todo');  
                   n.outgoing.forEach(nn => {
@@ -54,15 +56,20 @@ export default {
                     if (targetTask) {
                       canvas.addMarker(nn.id, targetTask.completed ? 'highlight' : 'highlight-todo');  
                     } else if (nn.targetRef.$type === 'bpmn:ExclusiveGateway') {
-                      canvas.addMarker(nn.id, 'highlight');
+                      // canvas.addMarker(nn.id, 'highlight');
+                      canvas.addMarker(nn.id, completeTask.completed ? 'highlight' : 'highlight-todo');  
+                      canvas.addMarker(nn.targetRef.id, completeTask.completed ? 'highlight' : 'highlight-todo');  
+                    } else if (nn.targetRef.$type === 'bpmn:EndEvent') {
+                      if (!todoTask && endTask.key === n.id) {
+                        canvas.addMarker(nn.id, 'highlight');  
+                        canvas.addMarker(nn.targetRef.id, 'highlight');  
+                      }
+                      if (!completeTask.completed) {
+                        canvas.addMarker(nn.id, 'highlight-todo');  
+                        canvas.addMarker(nn.targetRef.id, 'highlight-todo');  
+                      }
                     }
                   });
-                  n.incoming.forEach(nn => {
-                    if (nn.sourceRef.$type === 'bpmn:ExclusiveGateway') {
-                      canvas.addMarker(nn.sourceRef.id, 'highlight');
-                    }
-                    // canvas.addMarker(nn.id, completeTask.completed ? 'highlight' : 'highlight-todo');  
-                  })
                 }
             } else if (n.$type === 'bpmn:ExclusiveGateway') {
               n.outgoing.forEach(nn => {
@@ -72,16 +79,7 @@ export default {
                 }
               })
             }
-            if (n.$type === 'bpmn:EndEvent') {
-              n.incoming.forEach(nn => {
-                let completeTask = _self.taskList.find(m => m.key === nn.sourceRef.id && m.completed)
-                if (completeTask) {
-                  canvas.addMarker(n.id, 'highlight');
-                  canvas.addMarker(nn.id, 'highlight');
-                  return
-                }
-              });
-            } else if (n.$type === 'bpmn:StartEvent') {
+            if (n.$type === 'bpmn:StartEvent') {
               n.outgoing.forEach(nn => {
                 let completeTask = _self.taskList.find(m => m.key === nn.targetRef.id)
                 if (completeTask) {
@@ -120,6 +118,11 @@ export default {
 }
 /deep/.highlight.djs-shape .djs-visual > :nth-child(2) {
   fill: green !important;
+}
+/deep/.highlight.djs-shape .djs-visual > path {
+  fill: green !important;
+  fill-opacity: 0.2 !important;
+  stroke: green !important;
 }
 /deep/.highlight.djs-connection > .djs-visual > path {
   stroke: green !important;

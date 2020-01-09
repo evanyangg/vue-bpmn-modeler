@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
-    <!-- <BpmnViewer :xmlData="propXmlData" :taskData="propTaskList"></BpmnViewer> -->
-    <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button>
+    <!-- <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler> -->
+    <BpmnViewer :xmlData="viewData" :taskData="propTaskList"></BpmnViewer>
+    <!-- <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button> -->
   </div>
 </template>
 <script>
 import demo from './demo.bpmn';
+import view from './view.bpmn';
 export default {
   data() {
     return {
       propXmlData: demo,
+      viewData: view,
       propTaskList: [
         {
           key: 'UserTask_06zjapk',
@@ -26,6 +28,10 @@ export default {
         },
         {
           key: 'UserTask_1pvvtgn',
+          completed: true
+        },
+        {
+          key: 'Task_02tadrd',
           completed: false
         }
       ],
