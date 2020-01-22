@@ -70,36 +70,49 @@ export default {
     exportArtifacts()
   },
   methods: {
-    async addTask(taskAdd) {
+    async replace(data) {
       let _self = this;
       await this.openDiagram(this.diagramXML);
-      return new Promise((resolve, reject) => { 
-        if (taskAdd && taskAdd.taskList.length > 0) {
+      let incomingTask = []
+      let outgoingTask = []
+      return new Promise((resolve, reject) => {
+        if (data && data.taskList.length > 0) {
           let modelerCanvas = _self.modeler.get("canvas");
           let rootElement = modelerCanvas.getRootElement();
           let cli = window.cli;
+          let activityType = ''
           // 删除目标task sequenceFlow
           rootElement.children.forEach(n => {
-            if (n.type === 'bpmn:UserTask' && n.id === taskAdd.replaceTaskActivity) {
-              n.outgoing.forEach(nn => {
-                cli.removeConnection(nn.id);
-              })
+            if (n.id === data.replaceActivity) {
+              if (n.type === 'bpmn:SequenceFlow') {
+                incomingTask.push(n.source.id)
+                outgoingTask.push(n.target.id)
+              } else {
+                n.incoming.forEach(nn => {
+                  incomingTask.push(nn.source.id)
+                })
+                n.outgoing.forEach(nn => {
+                  outgoingTask.push(nn.target.id)
+                })
+              }
+              activityType = n.type
             }
           })
-          if (taskAdd.replaceTaskActivity) {
-            cli.removeShape(taskAdd.replaceTaskActivity);
-          }
-          let taskActivity = taskAdd.source;
-          for (let index = 0; index < taskAdd.taskList.length; index++) {
-            taskActivity = cli.append(taskActivity, 'bpmn:UserTask');
-            taskAdd.taskList[index].taskActivity = taskActivity;
-            cli.setLabel(taskActivity, taskAdd.taskList[index].label);
+          let taskActivity = activityType === 'bpmn:SequenceFlow' ? incomingTask[0] : data.replaceActivity
+          for (let index = 0; index < data.taskList.length; index++) {
+            taskActivity = cli.append(taskActivity, 'bpmn:UserTask')
+            data.taskList[index].taskActivity = taskActivity;
+            cli.setLabel(taskActivity, data.taskList[index].label);
             cli.move(taskActivity, { x: -200, y: 120 });
-            if (index ===  taskAdd.taskList.length - 1) {
-              cli.connect(taskActivity, taskAdd.target, 'bpmn:SequenceFlow') 
-            }
           }
-          resolve(taskAdd.taskList);
+          activityType === 'bpmn:SequenceFlow' ? cli.removeConnection(data.replaceActivity) : cli.removeShape(data.replaceActivity)
+          incomingTask.forEach(n => {
+            cli.connect(n, data.taskList[0].taskActivity, 'bpmn:SequenceFlow') 
+          })
+          outgoingTask.forEach(n => {
+            cli.connect(data.taskList[data.taskList.length - 1].taskActivity, n, 'bpmn:SequenceFlow') 
+          })
+          resolve(data.taskList);
         } else {
           reject('params error')
         }

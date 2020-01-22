@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler> -->
-    <BpmnViewer :xmlData="viewData" :taskData="propTaskList"></BpmnViewer>
-    <!-- <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button> -->
+    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
+    <!-- <BpmnViewer :xmlData="viewData" :taskData="propTaskList"></BpmnViewer> -->
+    <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button>
   </div>
 </template>
 <script>
@@ -51,11 +51,9 @@ export default {
       console.log(list);
     },
     addTask () {
-      let taskAdd = {
-        source: 'UserTask_07cj5cp',
-        replaceTaskActivity: 'UserTask_0hkfnx2',
-        target: 'UserTask_1pvvtgn',
-        taskList: [
+      let taskList = []
+      if (Math.round(Math.random()) === 0) {
+        taskList = [
           {
             label: 'test task1'
           },
@@ -63,8 +61,18 @@ export default {
             label: 'test task2'
           }
         ]
+      } else {
+        taskList = [
+          {
+            label: 'test task1'
+          }
+        ]
       }
-      this.$refs.modeler.addTask(taskAdd).then((data) => {
+      let addOrReplace = {
+        replaceActivity: 'UserTask_0hkfnx2',
+        taskList: taskList
+      }
+      this.$refs.modeler.replace(addOrReplace).then((data) => {
         // new task list
         console.log(data);
       });

@@ -123,26 +123,22 @@ taskList: 表示流程的历史记录 可以通过服务的接口 historyService
   };
 </script>
 ```
-#### 动态添加任务节点
-#### dynamically add task
+#### 动态添加/替换任务节点
+#### dynamically add/replace task
 ![viewer](https://image.ulitom.com/other/add-task.gif)
 ```javascript
 addTask () {
-  let taskAdd = {
-    // 上一个节点
-    source: 'UserTask_06zjapk',
-    // 需要替换的任务节点,如果为空则为插入节点
-    replaceTaskActivity: 'UserTask_0hkfnx2',
-    // 下一个节点
-    target: 'ExclusiveGateway_13yj8os',
+  let addOrReplace = {
+    // task || sequenceFlow || gateway
+    replaceActivity: 'UserTask_0hkfnx2',
     taskList: [
       {
         label: 'test task'
       }
     ]
   }
-  this.$refs.modeler.addTask(taskAdd).then((taskList) => {
-    // new task list
+  this.$refs.modeler.replace(addOrReplace).then((taskList) => {
+    // new task list, incluce taskId
     console.log(taskList);
   });
 }

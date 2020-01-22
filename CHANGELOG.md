@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.3 ~ 1.0.4
+* `OPTIMIZE`: 完善动态添加节点 可替换更多场景(task, sequenceFlow, gateway ...)
 ## 1.0.2
 * `FIXED`: 完善流程预览,修复流程多分支问题
 ## 1.0.0
