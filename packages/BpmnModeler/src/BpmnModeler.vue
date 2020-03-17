@@ -48,26 +48,28 @@ export default {
         camunda: camundaModdleDescriptor
       }
     });
-    this.openDiagram(this.diagramXML);
-    // 自动保存当前模型设计
-    let _self = this;
-    let exportArtifacts = debounce(function() {
+    this.$nextTick(() => {
+      this.openDiagram(this.diagramXML);
+      // 自动保存当前模型设计
+      let _self = this;
+      let exportArtifacts = debounce(function() {
 
-      _self.saveSVG(function(err, svg) {
-        _self.svgImage = svg;
-      });
+        _self.saveSVG(function(err, svg) {
+          _self.svgImage = svg;
+        });
 
-      _self.saveDiagram(function(err, xml) {
-        _self.xmlData = xml;
-      });
-      let modelInfo = {
-        xmlData: _self.xmlData,
-        svgImage: _self.svgImage
-      }
-      _self.$emit('input', modelInfo)
-    }, 10);
-    this.modeler.on("commandStack.changed", exportArtifacts);
-    exportArtifacts()
+        _self.saveDiagram(function(err, xml) {
+          _self.xmlData = xml;
+        });
+        let modelInfo = {
+          xmlData: _self.xmlData,
+          svgImage: _self.svgImage
+        }
+        _self.$emit('input', modelInfo)
+      }, 10);
+      this.modeler.on("commandStack.changed", exportArtifacts);
+      exportArtifacts()
+    })
   },
   methods: {
     async replace(data) {
@@ -131,15 +133,14 @@ export default {
           this.xmlData = xml;
         } else {
           this.modeler.createDiagram();
-          let _self = this;
           setTimeout(() => {
             /**
              * 修改xml属性值 isExecutable = false => true
              * isExecutable = false 后端部署流程时 不会创建流程定义数据
              */
-            let modelerCanvas = _self.modeler.get("canvas");
+            let modelerCanvas = this.modeler.get("canvas");
             let rootElement = modelerCanvas.getRootElement();
-            let modeling = _self.modeler.get("modeling");
+            let modeling = this.modeler.get("modeling");
             // modeling.updateProperties(rootElement, {
             //   // isExecutable: true
             // });

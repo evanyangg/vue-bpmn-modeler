@@ -2,7 +2,7 @@
   <div id="app">
     <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
     <!-- <BpmnViewer :xmlData="viewData" :taskData="propTaskList"></BpmnViewer> -->
-    <button @click="addTask" style="position: absolute;top:50%;left:50%;width:200px;z-index: 2000;">add task</button>
+    <button @click="addTask" v-if="$refs.modeler">add task</button>
   </div>
 </template>
 <script>
@@ -58,7 +58,7 @@ export default {
             label: 'test task1'
           },
           {
-            label: 'test task2'
+            label: '通用节点'
           }
         ]
       } else {
@@ -80,13 +80,17 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-.zhinengkan {
+<style lang="less">
+button {
   position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
+  right:15px;
+  bottom:100px;
+  height: 40px;
+  width: 80px;
+  z-index: 100;
+  color: green;
+  background: rgba(0, 128, 0, 0.2);
+  border: 1px solid rgb(0, 128, 0);
+  border-radius: 4px;
 }
 </style>
