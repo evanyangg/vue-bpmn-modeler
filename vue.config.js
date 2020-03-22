@@ -18,7 +18,7 @@ module.exports = {
             javascriptEnabled: true //less 配置
         }
     }, // css预设器配置项
-    modules: false // 启用 CSS modules for all css / pre-processor files.
+    requireModuleExtension: false // 启用 CSS modules for all css / pre-processor files.
   },
   chainWebpack: config => {
     config.module
