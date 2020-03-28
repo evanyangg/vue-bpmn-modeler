@@ -63,9 +63,9 @@ export default {
         ]
       } else {
         taskList = [
-          {
-            label: 'test task1'
-          }
+          // {
+          //   label: 'test task1'
+          // }
         ]
       }
       let addOrReplace = {

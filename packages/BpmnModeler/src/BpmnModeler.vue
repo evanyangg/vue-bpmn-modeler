@@ -77,7 +77,7 @@ export default {
       await this.openDiagram(this.diagramXML);
       let incomingTask = []
       let outgoingTask = []
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         if (data && data.taskList.length > 0) {
           let modelerCanvas = _self.modeler.get("canvas");
           let rootElement = modelerCanvas.getRootElement();
@@ -116,7 +116,7 @@ export default {
           })
           resolve(data.taskList);
         } else {
-          reject('params error')
+          this.openDiagram(this.diagramXML);
         }
       })
     },
