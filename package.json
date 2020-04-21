@@ -1,6 +1,6 @@
 {
   "name": "vue-bpmn-modeler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "author": "evanyangg",
   "scripts": {
@@ -17,8 +17,7 @@
     "core-js": "^3.6.4",
     "diagram-js-minimap": "^2.0.3",
     "inherits": "^2.0.4",
-    "vue": "^2.6.11",
-    "vue-bpmn-modeler": "^1.0.6"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.3",
