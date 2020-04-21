@@ -8051,19 +8051,6 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-bpmn-modeler@^1.0.6:
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/vue-bpmn-modeler/-/vue-bpmn-modeler-1.0.7.tgz#37e6e8431834e002deccbf85fef586db90437963"
-  integrity sha512-WChRcdDKmO+ZbNiJI8IK5zYZp155QFGSauT3xrZfoj6+9Kpa2yL9vUOW5cKtRYaOL5Uwoq6xwCKB/1LZGr67pQ==
-  dependencies:
-    bpmn-js "^6.3.4"
-    bpmn-js-cli "^1.2.0"
-    camunda-bpmn-moddle "^4.4.0"
-    diagram-js-minimap "^2.0.3"
-    inherits "^2.0.4"
-    vue "^2.6.11"
-    vue-bpmn-modeler "^1.0.6"
-
 vue-eslint-parser@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-5.0.0.tgz#00f4e4da94ec974b821a26ff0ed0f7a78402b8a1"
