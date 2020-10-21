@@ -143,7 +143,12 @@ addTask () {
   });
 }
 ```
-
+#### 开启 propertiesPanel
+```html
+<template>
+  <BpmnModeler v-model="modeler" propertiesPanel></BpmnModeler>
+</template>
+```
 ## Examples
 ```bash
 # clone the project
