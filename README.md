@@ -9,8 +9,14 @@ yarn add vue-bpmn-modeler
 ```js
 # main.js
 import VueBpmnModeler from "vue-bpmn-modeler";
-import "vue-bpmn-modeler/lib/vue-bpmn-modeler.css";
 Vue.use(VueBpmnModeler);
+```
+
+```html
+# yourPage.vue
+<style lang="less">
+@import "~vue-bpmn-modeler/lib/vue-bpmn-modeler.css";
+</style>
 ```
 ![viewer](https://image.ulitom.com/other/modeler.png)
 
