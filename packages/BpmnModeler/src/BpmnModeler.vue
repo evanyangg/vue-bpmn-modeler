@@ -1,13 +1,16 @@
 <template>
-  <div ref="container" class="containers" @mousemove="focusOut">
+  <div ref="container" class="containers">
     <div ref="canvas" class="canvas"></div>
+    <div id="properties-panel-parent" class="properties-panel-parent"></div>
   </div>
 </template>
 
 <script>
 import BpmnModeler from "../../CustomModeler";
 import CustomTranslate from "../../CustomTranslate";
-import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda";
+import camundaModdleDescriptor from "camunda-bpmn-moddle/resources/camunda.json";
+import propertiesPanelModule from 'bpmn-js-properties-panel';
+import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
 import minimapModule from "diagram-js-minimap";
 import CliModule from 'bpmn-js-cli';
 import { debounce } from "min-dash";
@@ -17,14 +20,15 @@ let customTranslateModule = {
 export default {
   name: "BpmnModeler",
   props: {
-    diagramXML: String
+    diagramXML: String,
+    propertiesPanel: null
   },
   data() {
     return {
       modeler: {},
       xmlData: "",
       svgImage: "",
-      isSvg: false
+      isSvg: false,
     };
   },
   watch: {
@@ -32,35 +36,49 @@ export default {
       this.openDiagram(val)
     }
   },
-  mounted() {
+  async mounted() {
+    console.log(this.propertiesPanel === '')
     let canvas = this.$refs["canvas"];
+    let additionalModules = [
+      customTranslateModule,
+      minimapModule,
+      CliModule
+    ]
+    if (this.propertiesPanel === '' || this.propertiesPanel) {
+      additionalModules = additionalModules.concat([
+        propertiesPanelModule,
+        propertiesProviderModule
+      ])
+    }
     this.modeler = new BpmnModeler({
       container: canvas,
-      additionalModules: [
-        customTranslateModule,
-        minimapModule,
-        CliModule
-      ],
+      additionalModules: additionalModules,
       cli: {
         bindTo: 'cli'
       },
       moddleExtensions: {
         camunda: camundaModdleDescriptor
+      },
+      propertiesPanel: {
+        parent: '#properties-panel-parent'
       }
     });
-    this.$nextTick(() => {
-      this.openDiagram(this.diagramXML);
+    await this.openDiagram(this.diagramXML).then(() => {
       // 自动保存当前模型设计
       let _self = this;
-      let exportArtifacts = debounce(function() {
-
-        _self.saveSVG(function(err, svg) {
-          _self.svgImage = svg;
-        });
-
-        _self.saveDiagram(function(err, xml) {
-          _self.xmlData = xml;
-        });
+      let exportArtifacts = debounce(async () => {
+        try {
+          const { svg } = await _self.modeler.saveSVG();
+          _self.svgImage = svg;  
+        } catch (err) {
+          console.log(`saveSVG error ${err}`)
+        }
+        try {
+          const { xml } = await _self.modeler.saveXML({ format: true })
+          _self.xmlData = xml;  
+        } catch (error) {
+          console.log(`saveXML error ${err}`)
+        }
         let modelInfo = {
           xmlData: _self.xmlData,
           svgImage: _self.svgImage
@@ -69,7 +87,7 @@ export default {
       }, 10);
       this.modeler.on("commandStack.changed", exportArtifacts);
       exportArtifacts()
-    })
+    });
   },
   methods: {
     async replace(data) {
@@ -121,15 +139,15 @@ export default {
       })
     },
     openDiagram(xml) {
-       return new Promise((resolve, reject) => { 
+       return new Promise(async (resolve, reject) => { 
         if (xml) {
-          this.modeler.importXML(xml, function(err) {
-            if (err) {
-              reject(err);
-            } else {
-              resolve()
-            }
-          });
+          try {
+            const result = await this.modeler.importXML(xml);
+            console.log('rendered');
+            resolve()
+          } catch (err) {
+            reject(err);
+          }
           this.xmlData = xml;
         } else {
           this.modeler.createDiagram();
@@ -164,11 +182,7 @@ export default {
     saveSVG(done) {
       this.modeler.saveSVG(done);
     },
-    saveDiagram(done) {
-      this.modeler.saveXML({ format: true }, function(err, xml) {
-        done(err, xml);
-      });
-    },
+    // todo 
     focusOut(event) {
       let layerBase = document.querySelector('.layer-base')
       let zoom = layerBase.parentNode.getBoundingClientRect();
@@ -184,9 +198,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+// @import "../../styles/app.less";
 @import "~bpmn-js/dist/assets/diagram-js.css";
 @import "~bpmn-js/dist/assets/bpmn-font/css/bpmn.css";
 @import "~diagram-js-minimap/assets/diagram-js-minimap.css";
+@import '~bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css';
 .containers {
   position: absolute;
   background-color: #ffffff;
@@ -194,9 +210,58 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  // position: relative;
+  // width: 100%;
+  // height: 100%;
 }
 .canvas {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
   width: 100%;
   height: 100%;
+}
+.properties-panel-parent {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  // width: 20%;
+  width: 260px;
+  z-index: 10;
+  border-left: 1px solid #ccc;
+  overflow: auto;
+  &:empty {
+    display: none;
+  }
+  > .djs-properties-panel {
+    padding-bottom: 70px;
+    min-height:100%;
+  }
+  /deep/ .bpp-textfield input {
+    padding-right: 0;
+  }
+  /deep/ .bpp-properties-panel {
+    .bpp-properties {
+      .bpp-properties-header {
+        .label {
+            word-wrap: break-word;
+        }
+      }
+    }
+  }
+  /deep/ .bpp-properties-panel [type=text], /deep/ .bpp-properties-panel textarea {
+    width: calc(100% - 6px)
+  }
+  /deep/ .bpp-properties-panel [contenteditable] {
+    width: calc(100% - 12px)
+  }
+  /deep/ .bpp-table-row > label.bpp-table-row-columns-2.bpp-table-row-removable, /deep/ .bpp-table-row > input.bpp-table-row-columns-2.bpp-table-row-removable {
+    width: calc(50% - 12px);
+  }
 }
 </style>

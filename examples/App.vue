@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData"></BpmnModeler>
+    <BpmnModeler ref='modeler' v-model="modeler" :diagramXML="propXmlData" propertiesPanel></BpmnModeler>
     <!-- <BpmnViewer :xmlData="viewData" :taskData="propTaskList"></BpmnViewer> -->
-    <button @click="addTask" v-if="$refs.modeler">add task</button>
+    <button @click="addTask" class="button" v-if="$refs.modeler">add task</button>
   </div>
 </template>
 <script>
@@ -81,7 +81,7 @@ export default {
 }
 </script>
 <style lang="less">
-button {
+.button {
   position: absolute;
   right:15px;
   bottom:100px;
