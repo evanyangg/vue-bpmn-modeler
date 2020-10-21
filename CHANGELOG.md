@@ -1,4 +1,7 @@
 # Changelog
+## 1.2.0
+* `FEATURE`: 新增 propertiesPanel
+* `OPTIMIZE`: 更新bpmn版本依赖
 ## 1.0.3 ~ 1.0.4
 * `OPTIMIZE`: 完善动态添加节点 可替换更多场景(task, sequenceFlow, gateway ...)
 ## 1.0.2
